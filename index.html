@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Revisão de IPTU em Belém — Dias Advogados</title>
+  <meta name="description" content="Seu IPTU pode estar sendo cobrado a mais. Descubra se você tem direito à redução e à restituição dos últimos 5 anos. Verificação gratuita."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ========================================
+       RESET & VARIABLES
+       ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Backgrounds */
+      --bg:          #0E0905;
+      --bg2:         #141009;
+      --surface:     #1A1410;
+      --surface2:    #241A0E;
+
+      /* Gold */
+      --gold:        #C9A257;
+      --gold-light:  #E2C47E;
+      --gold-muted:  #8B6E3A;
+      --gold-glow:   rgba(201,162,87,.18);
+
+      /* Green */
+      --green-deep:   #1B3D2A;
+      --green-mid:    #2A5C3F;
+      --green-accent: #3D8A5A;
+      --green-light:  #5AAD78;
+      --green-glow:   rgba(61,138,90,.12);
+
+      /* Text */
+      --text:      #F5F0E8;
+      --text-sec:  #A89880;
+      --text-muted:#6B5C4A;
+
+      /* Borders */
+      --border:       #2D2214;
+      --border-gold:  rgba(201,162,87,.18);
+      --border-green: rgba(61,138,90,.2);
+
+      /* Motion */
+      --ease-out: cubic-bezier(.22, 1, .36, 1);
+      --duration-fast:   150ms;
+      --duration-base:   200ms;
+      --duration-slow:   300ms;
+      --duration-reveal: 600ms;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--text-sec);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--text);
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    button { font-family: 'Inter', sans-serif; }
+
+    /* ========================================
+       LAYOUT
+       ======================================== */
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    /* ========================================
+       SECTION TAG
+       ======================================== */
+    .section-tag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 10.5px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .section-tag::before {
+      content: '\2014';
+      color: var(--gold);
+      font-size: 14px;
+    }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: #0A0804;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 14px 28px;
+      transition: background var(--duration-base) ease, transform var(--duration-base) ease, box-shadow var(--duration-base) ease;
+      cursor: pointer;
+      border: none;
+      min-height: 44px;
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--gold-glow);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+    .btn-primary svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-sec);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(245,240,232,.15);
+      border-radius: 4px;
+      padding: 13px 24px;
+      transition: border-color var(--duration-base) ease, color var(--duration-base) ease;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ========================================
+       NAVBAR
+       ======================================== */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 18px 0;
+      transition: all .35s;
+      border-bottom: 1px solid transparent;
+    }
+    #navbar.scrolled {
+      background: rgba(14,9,5,.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom-color: var(--border);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 34px;
+      width: auto;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: .1em;
+      margin: 0 13px;
+      transition: color .2s;
+      text-transform: uppercase;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width .2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      min-height: 44px;
+    }
+
+    /* Hamburger */
+    #hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    #hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text);
+      border-radius: 1px;
+      transition: .3s;
+    }
+
+    /* Mobile Menu */
+    #mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--bg);
+      z-index: 49;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      font-size: 20px;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    #mobile-menu .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 28px;
+      background: none;
+      border: none;
+      color: var(--text-sec);
+      cursor: pointer;
+    }
+
+    /* ========================================
+       HERO
+       ======================================== */
+    #hero {
+      padding: 180px 0 120px;
+      min-height: 88vh;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    #hero > .section-inner {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Foto posicionada na direita */
+    .hero-photo {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 52%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+
+    /* Degradê horizontal: da esquerda (sólido) para a direita (transparente) */
+    .hero-photo-fade {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        to right,
+        rgba(14,9,5,1.00)  0%,
+        rgba(14,9,5,0.96) 18%,
+        rgba(14,9,5,0.72) 40%,
+        rgba(14,9,5,0.28) 62%,
+        rgba(14,9,5,0.06) 82%,
+        rgba(14,9,5,0.00) 100%
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Escurece topo e fundo para acabamento limpo */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(14,9,5,0.55)  0%,
+          transparent        18%,
+          transparent        72%,
+          rgba(14,9,5,0.65) 100%
+        );
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* Grain sutil */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: .04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+    }
+    .hero-tag {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 10.5px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      background: rgba(201,162,87,.08);
+      border: 1px solid rgba(201,162,87,.15);
+      padding: 8px 16px;
+      border-radius: 4px;
+    }
+    .hero-tag svg { width: 14px; height: 14px; color: var(--gold); }
+    .hero-title {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(34px, 5.8vw, 64px);
+      line-height: 1.08;
+      color: var(--text);
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-sec);
+      max-width: 580px;
+      margin-bottom: 36px;
+    }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+      letter-spacing: .02em;
+    }
+    .hero-trust span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-trust svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold-muted);
+    }
+
+    /* ========================================
+       STRIP
+       ======================================== */
+    #strip {
+      background: var(--bg2);
+      padding: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .strip-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 32px;
+    }
+    .strip-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-sec);
+      white-space: nowrap;
+    }
+    .strip-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--green-accent);
+      flex-shrink: 0;
+    }
+
+    /* ========================================
+       BENEFÍCIOS (O que você pode ter direito)
+       ======================================== */
+    #beneficios {
+      background: var(--bg);
+    }
+    .beneficios-header {
+      margin-bottom: 56px;
+      max-width: 580px;
+    }
+    .beneficios-header h2 {
+      font-size: clamp(26px, 3.2vw, 44px);
+      margin-bottom: 16px;
+    }
+    .beneficios-header p {
+      font-size: 16px;
+      color: var(--text-sec);
+    }
+    .beneficios-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .beneficio-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 36px 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--duration-base) ease, transform var(--duration-base) ease;
+    }
+    .beneficio-card:hover {
+      border-color: var(--gold-muted);
+      transform: translateY(-2px);
+    }
+    .beneficio-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+    .beneficio-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 6px;
+      background: rgba(201,162,87,.08);
+      border: 1px solid rgba(201,162,87,.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .beneficio-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--gold);
+    }
+    .beneficio-card h3 {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .beneficio-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-sec);
+    }
+
+    /* ========================================
+       CALCULADORA
+       ======================================== */
+    #calculadora {
+      background: var(--bg2);
+    }
+    .calc-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .calc-header h2 {
+      font-size: clamp(26px, 3.2vw, 44px);
+      margin-bottom: 12px;
+    }
+    .calc-box {
+      max-width: 640px;
+      margin: 0 auto;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .calc-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+    .calc-input-group {
+      margin-bottom: 28px;
+    }
+    .calc-input-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .calc-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .calc-input-wrap .prefix {
+      position: absolute;
+      left: 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+    .calc-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 14px 16px 14px 44px;
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--duration-base) ease;
+      min-height: 44px;
+    }
+    .calc-input::placeholder {
+      color: var(--text-muted);
+      font-weight: 400;
+      font-size: 18px;
+    }
+    .calc-input:focus {
+      border-color: var(--gold);
+    }
+
+    /* Results */
+    .calc-results {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity var(--duration-slow) ease, max-height var(--duration-slow) ease;
+    }
+    .calc-results.active {
+      opacity: 1;
+      max-height: 400px;
+    }
+    .calc-results-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .calc-results-label svg {
+      width: 16px;
+      height: 16px;
+      color: var(--gold);
+    }
+    .calc-result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .calc-result-row:last-of-type {
+      border-bottom: none;
+    }
+    .calc-result-name {
+      font-size: 14px;
+      color: var(--text-sec);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .calc-result-name svg {
+      width: 16px;
+      height: 16px;
+      color: var(--gold-muted);
+      flex-shrink: 0;
+    }
+    .calc-result-value {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .calc-disclaimer {
+      margin-top: 20px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      padding: 16px;
+      background: rgba(201,162,87,.04);
+      border: 1px solid rgba(201,162,87,.08);
+      border-radius: 4px;
+    }
+    .calc-cta {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    /* ========================================
+       COMO FUNCIONA
+       ======================================== */
+    #como-funciona {
+      background: var(--bg);
+    }
+    .como-header {
+      margin-bottom: 56px;
+      max-width: 480px;
+    }
+    .como-header h2 {
+      font-size: clamp(26px, 3.2vw, 44px);
+      margin-bottom: 12px;
+    }
+    .como-header p {
+      color: var(--text-sec);
+      font-size: 16px;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .step-card {
+      position: relative;
+      padding: 32px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color var(--duration-base) ease;
+    }
+    .step-card:hover {
+      border-color: var(--gold-muted);
+    }
+    .step-num {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 700;
+      font-size: 48px;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 16px;
+      opacity: .3;
+    }
+    .step-title {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .step-card p {
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--text-sec);
+    }
+
+    /* ========================================
+       AUTORIDADE
+       ======================================== */
+    #autoridade {
+      background: var(--bg2);
+    }
+    .autoridade-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .autoridade-header h2 {
+      font-size: clamp(26px, 3.2vw, 44px);
+      margin-bottom: 8px;
+    }
+    .autoridade-header p {
+      color: var(--text-sec);
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 36px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--duration-base) ease;
+    }
+    .metric-card:hover {
+      border-color: var(--gold-muted);
+    }
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+    }
+    .metric-num {
+      font-family: 'Cormorant', Georgia, serif;
+      font-size: clamp(48px, 5vw, 64px);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .metric-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    /* ========================================
+       FAQ
+       ======================================== */
+    #faq {
+      background: var(--bg);
+    }
+    .faq-header {
+      margin-bottom: 48px;
+    }
+    .faq-header h2 {
+      font-size: clamp(26px, 3.2vw, 44px);
+    }
+    .faq-list {
+      max-width: 760px;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      text-align: left;
+      min-height: 44px;
+    }
+    .faq-question span {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.3;
+      color: var(--text);
+      transition: color var(--duration-base) ease;
+    }
+    .faq-question:hover span {
+      color: var(--gold);
+    }
+    .faq-question svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform var(--duration-base) ease, color var(--duration-base) ease;
+    }
+    .faq-item.open .faq-question svg {
+      transform: rotate(45deg);
+      color: var(--gold);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height var(--duration-slow) ease;
+    }
+    .faq-answer-inner {
+      padding: 0 0 24px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-sec);
+      max-width: 640px;
+    }
+
+    /* ========================================
+       CTA FINAL
+       ======================================== */
+    #cta-final {
+      background: var(--bg2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta-final::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201,162,87,.08), transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta-final-content h2 {
+      font-size: clamp(26px, 3.2vw, 42px);
+      margin-bottom: 16px;
+    }
+    .cta-final-content p {
+      font-size: 16px;
+      color: var(--text-sec);
+      margin-bottom: 36px;
+    }
+    .cta-final-trust {
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: .04em;
+    }
+
+    /* ========================================
+       LOCALIZAÇÃO
+       ======================================== */
+    #localizacao { background: var(--bg); }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .location-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 36px;
+    }
+    .location-card h3 {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .location-detail {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--text-sec);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .location-detail:last-child { margin-bottom: 0; }
+    .location-detail svg { flex-shrink: 0; margin-top: 3px; }
+    .location-map {
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 100%;
+      min-height: 300px;
+    }
+    .location-map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: 0;
+      filter: grayscale(.4) contrast(1.1) brightness(.7);
+      transition: filter .3s;
+      display: block;
+    }
+    .location-map:hover iframe {
+      filter: grayscale(.2) contrast(1) brightness(.8);
+    }
+    @media (max-width: 1024px) {
+      .location-grid { grid-template-columns: 1fr; }
+      .location-map { min-height: 280px; }
+      .location-map iframe { min-height: 280px; }
+    }
+    @media (max-width: 768px) {
+      .location-card { padding: 28px 22px; }
+      .location-grid { gap: 24px; }
+    }
+
+    /* ========================================
+       FOOTER
+       ======================================== */
+    footer {
+      background: #080604;
+      border-top: 1px solid var(--border);
+      padding: 56px 24px 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+    .footer-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .footer-info-item svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .footer-menu-title {
+      font-weight: 700;
+      font-size: 10.5px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .footer-menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .footer-menu-list a {
+      color: var(--text-sec);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color .2s;
+    }
+    .footer-menu-list a:hover {
+      color: var(--gold);
+    }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      color: var(--text-muted);
+      font-size: 12.5px;
+    }
+    .footer-bottom .footer-sub {
+      font-size: 11.5px;
+      opacity: .6;
+      margin-top: 4px;
+    }
+    .footer-bottom .footer-legal {
+      font-size: 11.5px;
+      opacity: .6;
+    }
+
+    /* ========================================
+       MODAL
+       ======================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(10,6,3,.85);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--duration-slow) ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 40px 36px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      transform: translateY(16px);
+      transition: transform var(--duration-slow) ease;
+    }
+    .modal-overlay.active .modal-box {
+      transform: translateY(0);
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: border-color var(--duration-base) ease, color var(--duration-base) ease;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    .modal-close:hover {
+      border-color: var(--gold-muted);
+      color: var(--text);
+    }
+    .modal-close svg { width: 18px; height: 18px; }
+    .modal-title {
+      font-family: 'Cormorant', Georgia, serif;
+      font-weight: 600;
+      font-size: 26px;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .modal-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--duration-base) ease;
+      min-height: 44px;
+    }
+    .form-group input::placeholder {
+      color: var(--text-muted);
+    }
+    .form-group input:focus {
+      border-color: var(--gold);
+    }
+    .modal-submit {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    /* ========================================
+       SCROLL REVEAL
+       ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity var(--duration-reveal) var(--ease-out), transform var(--duration-reveal) var(--ease-out);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (max-width: 1024px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 56px 0; }
+      .section-inner { padding: 0 18px; }
+
+      #hero { padding: 130px 0 64px; }
+
+      .beneficios-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+      .strip-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 16px 18px;
+      }
+      .calc-box {
+        padding: 28px 20px;
+      }
+      .calc-input {
+        font-size: 22px;
+      }
+      .calc-result-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+      }
+      .calc-result-value {
+        font-size: 20px;
+      }
+      .nav-links, .nav-cta { display: none; }
+      #hamburger { display: flex; }
+
+      /* Mobile: foto como bloco acima do texto */
+      #hero {
+        padding: 0 0 56px;
+        padding-top: 50px; /* altura da navbar — foto começa abaixo dela */
+        min-height: unset;
+        display: flex;
+        flex-direction: column;
+      }
+      #hero > .section-inner {
+        padding-top: 28px;
+        position: relative;
+        z-index: 3;
+      }
+      .hero-photo {
+        position: relative;
+        width: 100%;
+        height: 420px;
+        flex-shrink: 0;
+        margin-bottom: -85px;
+      }
+      .hero-photo img {
+        object-position: 55% 20%;
+      }
+      /* Faixa semi-transparente atrás do navbar — silhueta visível, logo legível */
+      #navbar {
+        background: rgba(14,9,5,0.84);
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+        border-bottom: 1px solid rgba(201,162,87,0.07);
+        padding: 12px 0;
+      }
+      .nav-logo img {
+        height: 24px;
+      }
+
+      /* Topo: mais presente para o logo respirar, mas mais suave que o baixo
+         Base: começa mais cedo, dá mais espaço para a tag "Proprietários" */
+      .hero-photo-fade {
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(14,9,5,0.30)  0%,
+            rgba(14,9,5,0.08) 14%,
+            rgba(14,9,5,0.00) 28%
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(14,9,5,0.00)  0%,
+            rgba(14,9,5,0.00) 34%,
+            rgba(14,9,5,0.32) 52%,
+            rgba(14,9,5,0.72) 68%,
+            rgba(14,9,5,0.92) 82%,
+            rgba(14,9,5,1.00) 100%
+          );
+      }
+      .modal-box {
+        padding: 28px 20px;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 28px;
+      }
+      .hero-trust {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+      footer {
+        padding: 40px 18px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav id="navbar" aria-label="Navegação principal">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Dias Advocacia - Início">
+        <img src="https://i.postimg.cc/3wg5dQYZ/DA-LOGO-1-2.png" alt="Dias Advocacia Logo" loading="eager"/>
+      </a>
+      <div class="nav-links">
+        <a href="#hero">Início</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#faq">FAQ</a>
+        <a href="#localizacao">Localização</a>
+      </div>
+      <button class="btn-primary nav-cta open-form-btn" style="padding:10px 20px;font-size:12px">Fale com um especialista</button>
+      <button id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ MOBILE MENU ============ -->
+  <div id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação">
+    <button class="close-btn" id="close-menu" aria-label="Fechar menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#beneficios">Benefícios</a>
+    <a href="#calculadora">Calculadora</a>
+    <a href="#como-funciona">Como Funciona</a>
+    <a href="#autoridade">Sobre Nós</a>
+    <a href="#faq">FAQ</a>
+    <a href="#localizacao">Localização</a>
+    <button class="btn-primary open-form-btn" style="margin-top:8px">Verificar meu IPTU</button>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section id="hero">
+    <!-- Foto: mão com carnê IPTU + skyline de Belém -->
+    <div class="hero-photo" aria-hidden="true">
+      <img src="hero-bg.jpg.png" alt=""/>
+      <div class="hero-photo-fade"></div>
+    </div>
+
+    <div class="section-inner">
+      <div class="hero-content reveal">
+        <div class="hero-tag">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Proprietários de imóveis em Belém
+        </div>
+        <h1 class="hero-title">Seu IPTU pode estar sendo cobrado a mais — e você tem direito à <em>devolução.</em></h1>
+        <p class="hero-sub">Se o seu imóvel foi construído após 2016 em Belém, a Prefeitura pode estar cobrando um valor indevido. Descubra se você tem direito à redução e à restituição do que pagou a mais.</p>
+        <button class="btn-primary" onclick="openModal()">
+          Quero verificar meu imóvel
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <div class="hero-trust">
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            OAB registrado
+          </span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            +10 anos em Belém
+          </span>
+          <span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Verificação gratuita e sem compromisso
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STRIP ============ -->
+  <div id="strip">
+    <div class="strip-inner">
+      <div class="strip-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Possível redução no IPTU
+      </div>
+      <div class="strip-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Possível devolução do que foi pago a mais
+      </div>
+      <div class="strip-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Sem custo para verificar
+      </div>
+      <div class="strip-item">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Sem compromisso
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ BENEFÍCIOS ============ -->
+  <section id="beneficios">
+    <div class="section-inner">
+      <div class="beneficios-header reveal">
+        <div class="section-tag">Benefícios</div>
+        <h2>O que você pode ter direito</h2>
+        <p>Dois resultados financeiros diretos para o seu bolso.</p>
+      </div>
+
+      <div class="beneficios-grid">
+        <div class="beneficio-card reveal">
+          <div class="beneficio-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/><line x1="12" y1="7" x2="12" y2="13"/><line x1="15" y1="10" x2="9" y2="10"/></svg>
+          </div>
+          <h3>Redução no valor do IPTU</h3>
+          <p>O imposto passa a ser calculado corretamente — de forma permanente para o seu imóvel.</p>
+        </div>
+
+        <div class="beneficio-card reveal">
+          <div class="beneficio-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>Restituição dos valores pagos em excesso</h3>
+          <p>É possível recuperar o que foi cobrado indevidamente nos últimos 5 anos.</p>
+        </div>
+      </div>
+
+      <button class="btn-primary reveal" onclick="openModal()">
+        Quero saber se meu imóvel se enquadra
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ CALCULADORA ============ -->
+  <section id="calculadora">
+    <div class="section-inner">
+      <div class="calc-header reveal">
+        <div class="section-tag">Calcule o seu caso</div>
+        <h2>Qual pode ser o impacto financeiro no seu caso?</h2>
+      </div>
+
+      <div class="calc-box reveal">
+        <div class="calc-input-group">
+          <label for="iptuValor">Valor anual do seu IPTU</label>
+          <div class="calc-input-wrap">
+            <span class="prefix">R$</span>
+            <input
+              type="text"
+              id="iptuValor"
+              class="calc-input"
+              placeholder="Ex: 2.400,00"
+              inputmode="decimal"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div class="calc-results" id="calcResults">
+          <div class="calc-results-label">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            Estimativa para o seu caso
+          </div>
+
+          <div class="calc-result-row">
+            <div class="calc-result-name">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              Redução estimada por ano
+            </div>
+            <div class="calc-result-value" id="resultAnual">—</div>
+          </div>
+
+          <div class="calc-result-row">
+            <div class="calc-result-name">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Possível restituição (5 anos)
+            </div>
+            <div class="calc-result-value" id="resultRestituicao">—</div>
+          </div>
+
+          <div class="calc-disclaimer">
+            A redução pode variar entre 20% e até 50% do valor cobrado, dependendo das características do imóvel. O valor exato é apurado na análise do escritório.
+          </div>
+
+          <div class="calc-cta">
+            <button class="btn-primary" onclick="openModal()">
+              Quero minha verificação gratuita
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <section id="como-funciona">
+    <div class="section-inner">
+      <div class="como-header reveal">
+        <div class="section-tag">Como funciona</div>
+        <h2>Simples e sem burocracia.</h2>
+        <p></p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-num">1</div>
+          <div class="step-title">Envie o carnê pelo WhatsApp</div>
+          <p>Você manda o carnê do IPTU pelo WhatsApp e nossa equipe analisa se o seu imóvel é elegível para a revisão.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">2</div>
+          <div class="step-title">Recebe o resultado da análise</div>
+          <p>Você descobre se o seu imóvel se enquadra na tese jurídica — sem custo e sem compromisso.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">3</div>
+          <div class="step-title">Reunião gratuita com o advogado</div>
+          <p>Se o imóvel for elegível, você tem uma reunião com o advogado do escritório. Ele apresenta quanto pode ser reduzido, como funciona o processo e tira todas as suas dúvidas.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">4</div>
+          <div class="step-title">Protocolo da ação</div>
+          <p>Decidindo avançar, o contrato é assinado e a ação é protocolada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AUTORIDADE ============ -->
+  <section id="autoridade">
+    <div class="section-inner">
+      <div class="autoridade-header reveal">
+        <div class="section-tag">Por que nos escolher</div>
+        <h2>Referência em Belém nessa tese jurídica.</h2>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card reveal">
+          <div class="metric-num">50+</div>
+          <div class="metric-label">Ações protocoladas nessa tese</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-num">10+</div>
+          <div class="metric-label">Anos de atuação no Pará</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-num">R$0</div>
+          <div class="metric-label">Custo para verificar se você tem direito</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="section-inner">
+      <div class="faq-header reveal">
+        <div class="section-tag">Dúvidas frequentes</div>
+        <h2>Perguntas frequentes</h2>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Isso é confiável?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Somos um escritório registrado na OAB com mais de 10 anos de atuação em Belém. A verificação é gratuita e você não assina nem paga nada ao participar.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Quanto custa?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">A verificação e a reunião com o advogado são gratuitas. As condições do serviço são apresentadas pelo advogado somente após a análise do seu caso.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Meu imóvel é financiado — ainda posso?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Sim. O financiamento não impede. O IPTU é cobrado independentemente e o direito à revisão é do proprietário.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Já reclamei na Prefeitura e não adiantou.</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Reclamação na Prefeitura e ação judicial são caminhos completamente diferentes. A reclamação administrativa depende da boa vontade do órgão — que é o mesmo que calculou o imposto errado. A ação judicial tem força legal para compelir a correção e a devolução dos valores, independentemente da vontade da Prefeitura. São instâncias distintas: o fato de uma não ter funcionado não impede a outra.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>É uma ação judicial ou um processo administrativo?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">É uma ação judicial. E isso faz toda a diferença. A tese utilizada já está consolidada no TJPA — o Tribunal de Justiça do Pará reconhece o direito dos proprietários à revisão do cálculo em imóveis que se enquadram nos critérios específicos que analisamos. Isso não é uma tentativa: é um caminho jurídico com precedentes estabelecidos, e a força coercitiva de uma decisão judicial é o que garante a efetividade do processo.</div>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false" onclick="toggleFaq(this)">
+            <span>Quais são as chances reais de resultado?</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Altas — para quem se enquadra. Não prometemos resultado: nenhum advogado pode fazê-lo eticamente. Mas podemos ser diretos: esta é uma tese consolidada no TJPA, a Prefeitura de Belém cometeu um erro real no cálculo do IPTU de determinados imóveis, e já protocolamos mais de 50 ações nessa tese nos últimos meses. O potencial de resultado aqui não é hipotético — é fundamentado em jurisprudência estabelecida e em 10 anos de análise desse tipo de caso. É justamente por isso que somos criterioso na triagem: se o imóvel não se enquadra, dizemos antes de qualquer contrato. Só avançamos quando há fundamento concreto para avançar.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA FINAL ============ -->
+  <section id="cta-final">
+    <div class="section-inner">
+      <div class="cta-final-content reveal">
+        <h2>Só há uma forma de saber se o seu imóvel se enquadra.</h2>
+        <p>A verificação é gratuita, sem compromisso e leva poucos minutos. Mande o carnê e descubra.</p>
+        <button class="btn-primary" onclick="openModal()">
+          Verificar meu IPTU agora
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+        <div class="cta-final-trust">Gratuito &middot; Sem compromisso</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOCALIZAÇÃO ============ -->
+  <section id="localizacao">
+    <div class="section-inner">
+      <div style="text-align:center;margin-bottom:52px" class="reveal">
+        <span class="section-tag" style="justify-content:center">Onde estamos</span>
+        <h2 style="font-size:clamp(26px,3.2vw,44px)">Nosso escritório</h2>
+      </div>
+      <div class="location-grid">
+        <div class="location-card reveal">
+          <h3>Belém — PA</h3>
+          <div class="location-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>Tv. Dom Romualdo de Seixas, 1476<br/>Ed. Evolution Corporate, Sala 1906<br/>Umarizal — Belém/PA · CEP 66055-200</div>
+          </div>
+          <div class="location-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.4 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.13 5.71l.89-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>(91) 8116-0842</div>
+          </div>
+          <div class="location-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>contato@diaslaw.com.br</div>
+          </div>
+          <div class="location-detail">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <div>Seg a Sex · 8h às 18h</div>
+          </div>
+        </div>
+        <div class="location-map reveal">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1994.3!2d-48.4867637!3d-1.4454145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92a48f3fb3d9c609%3A0x53e125443e6cf450!2sDias%20Advogados!5e0!3m2!1spt-BR!2sbr!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localização do escritório Dias Advocacia em Belém/PA"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="section-inner">
+      <div class="footer-grid">
+        <!-- Col 1: Logo + info -->
+        <div>
+          <img src="https://i.postimg.cc/3wg5dQYZ/DA-LOGO-1-2.png" alt="Dias Advocacia" style="height:40px;width:auto;margin-bottom:22px" loading="lazy"/>
+          <ul class="footer-info-list">
+            <li class="footer-info-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Tv. Dom Romualdo de Seixas, 1476,<br/>Ed. Evolution Corporate, Sala 1906, Belém/PA
+            </li>
+            <li class="footer-info-item" style="align-items:center">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.4 2 2 0 0 1 3.62 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.54a16 16 0 0 0 6.13 5.71l.89-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              (91) 8116-0842
+            </li>
+            <li class="footer-info-item" style="align-items:center">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              contato@diaslaw.com.br
+            </li>
+          </ul>
+        </div>
+        <!-- Col 2: Menu -->
+        <div>
+          <h4 class="footer-menu-title">Menu</h4>
+          <ul class="footer-menu-list">
+            <li><a href="#hero">Início</a></li>
+            <li><a href="#beneficios">Benefícios</a></li>
+            <li><a href="#calculadora">Calculadora</a></li>
+            <li><a href="#como-funciona">Como Funciona</a></li>
+            <li><a href="#autoridade">Sobre Nós</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#localizacao">Localização</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>
+          <p>&copy; 2025 Dias Advocacia e Consultoria. Todos os direitos reservados.</p>
+          <p class="footer-sub">CNPJ: 24.824.741/0001-55 &nbsp;&middot;&nbsp; Tv. Dom Romualdo de Seixas, 1476, Sala 1906, Belém/PA</p>
+        </div>
+        <p class="footer-legal">Este site tem caráter informativo e não constitui aconselhamento jurídico. Os valores apresentados são estimativas e não configuram garantia de resultado.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ MODAL FORM ============ -->
+  <div class="modal-overlay" id="formModal" role="dialog" aria-modal="true" aria-label="Formulário de verificação de IPTU">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Fechar">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="modal-title">Verificação gratuita</div>
+      <div class="modal-sub">Preencha seus dados e fale direto com o escritório.</div>
+      <form onsubmit="return submitLeadForm(event)">
+        <div class="form-group">
+          <label for="lead-nome">Nome</label>
+          <input type="text" id="lead-nome" placeholder="Seu nome completo" required/>
+        </div>
+        <div class="form-group">
+          <label for="lead-telefone">Telefone</label>
+          <input type="tel" id="lead-telefone" placeholder="(91) 99999-9999" required/>
+        </div>
+        <div class="form-group">
+          <label for="lead-email">E-mail</label>
+          <input type="email" id="lead-email" placeholder="seu@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label for="lead-valor">Valor anual do IPTU (opcional)</label>
+          <input type="text" id="lead-valor" placeholder="Ex: R$ 2.400,00"/>
+        </div>
+        <button type="submit" class="btn-primary modal-submit">
+          Enviar e falar no WhatsApp
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    /* ---- Navbar scroll ---- */
+    (function() {
+      const navbar = document.getElementById('navbar');
+      let lastY = 0;
+      window.addEventListener('scroll', function() {
+        const y = window.scrollY;
+        if (y > 40) {
+          navbar.classList.add('scrolled');
+          navbar.style.transform = (y > lastY && y > 300) ? 'translateY(-100%)' : '';
+        } else {
+          navbar.classList.remove('scrolled');
+          navbar.style.transform = '';
+        }
+        lastY = y;
+      }, { passive: true });
+    })();
+
+    /* ---- Hamburger / Mobile Menu ---- */
+    (function() {
+      var hamburger = document.getElementById('hamburger');
+      var mobileMenu = document.getElementById('mobile-menu');
+      var closeBtn = document.getElementById('close-menu');
+
+      hamburger.addEventListener('click', function() {
+        mobileMenu.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      });
+
+      closeBtn.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      });
+
+      // Close on link click
+      mobileMenu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+    })();
+
+    /* ---- All open-form-btn → Modal ---- */
+    document.querySelectorAll('.open-form-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        // Close mobile menu if open
+        var mm = document.getElementById('mobile-menu');
+        if (mm.classList.contains('open')) {
+          mm.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+        openModal();
+      });
+    });
+
+    /* ---- Scroll Reveal ---- */
+    (function() {
+      const revealObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            revealObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+    })();
+
+    /* ---- Modal ---- */
+    function openModal() {
+      document.getElementById('formModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      document.getElementById('formModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    // Close on overlay click
+    document.getElementById('formModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    /* ---- Lead Form → WhatsApp ---- */
+    function submitLeadForm(e) {
+      e.preventDefault();
+      var nome = document.getElementById('lead-nome').value.trim();
+      var telefone = document.getElementById('lead-telefone').value.trim();
+      var email = document.getElementById('lead-email').value.trim();
+      var valor = document.getElementById('lead-valor').value.trim();
+      var msg = 'Olá! Vim pelo site da Dias Advocacia (landing page IPTU).\n\n';
+      msg += '*Nome:* ' + nome + '\n*Telefone:* ' + telefone + '\n*E-mail:* ' + email + '\n';
+      if (valor) msg += '*Valor anual do IPTU:* ' + valor + '\n';
+      msg += '\nGostaria de verificar se meu imóvel tem direito à revisão de IPTU.';
+      window.open('https://wa.me/559181160842?text=' + encodeURIComponent(msg), '_blank');
+      closeModal();
+    }
+
+    /* ---- FAQ Accordion ---- */
+    function toggleFaq(btn) {
+      var item = btn.closest('.faq-item');
+      var answer = item.querySelector('.faq-answer');
+      var isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(function(openItem) {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        openItem.querySelector('.faq-answer').style.maxHeight = '0';
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    /* ---- CALCULADORA IPTU ---- */
+    (function() {
+      var input = document.getElementById('iptuValor');
+      var results = document.getElementById('calcResults');
+      var resultAnual = document.getElementById('resultAnual');
+      var resultRestituicao = document.getElementById('resultRestituicao');
+
+      function formatCurrency(value) {
+        return value.toLocaleString('pt-BR', {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2
+        });
+      }
+
+      function parseCurrency(str) {
+        // Remove everything except digits, comma, dot
+        var cleaned = str.replace(/[^\d.,]/g, '');
+        // Handle Brazilian format: 2.400,00 → 2400.00
+        // If has comma, treat as decimal separator
+        if (cleaned.indexOf(',') > -1) {
+          cleaned = cleaned.replace(/\./g, '').replace(',', '.');
+        }
+        var num = parseFloat(cleaned);
+        return isNaN(num) ? 0 : num;
+      }
+
+      function formatInput(str) {
+        var num = parseCurrency(str);
+        if (num <= 0) return '';
+        // Format as Brazilian currency without R$
+        var parts = num.toFixed(2).split('.');
+        var intPart = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        return intPart + ',' + parts[1];
+      }
+
+      function calculate() {
+        var valor = parseCurrency(input.value);
+
+        if (valor > 0) {
+          var minReducao = valor * 0.20;
+          var maxReducao = valor * 0.50;
+          var minRestituicao = minReducao * 5;
+          var maxRestituicao = maxReducao * 5;
+
+          resultAnual.textContent = 'R$ ' + formatCurrency(minReducao) + ' a R$ ' + formatCurrency(maxReducao);
+          resultRestituicao.textContent = 'R$ ' + formatCurrency(minRestituicao) + ' a R$ ' + formatCurrency(maxRestituicao);
+          results.classList.add('active');
+        } else {
+          results.classList.remove('active');
+          resultAnual.textContent = '—';
+          resultRestituicao.textContent = '—';
+        }
+      }
+
+      input.addEventListener('input', function() {
+        calculate();
+      });
+
+      // Format on blur
+      input.addEventListener('blur', function() {
+        var formatted = formatInput(this.value);
+        if (formatted) {
+          this.value = formatted;
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
