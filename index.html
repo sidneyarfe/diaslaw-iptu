@@ -336,12 +336,12 @@
       bottom: 0;
       background: linear-gradient(
         to right,
-        rgba(14,9,5,1.00)  0%,
-        rgba(14,9,5,0.96) 18%,
-        rgba(14,9,5,0.72) 40%,
-        rgba(14,9,5,0.28) 62%,
-        rgba(14,9,5,0.06) 82%,
-        rgba(14,9,5,0.00) 100%
+        rgba(14,9,5,0.95)  0%,
+        rgba(14,9,5,0.78) 18%,
+        rgba(14,9,5,0.46) 36%,
+        rgba(14,9,5,0.18) 54%,
+        rgba(14,9,5,0.05) 72%,
+        rgba(14,9,5,0.00) 90%
       );
       z-index: 2;
       pointer-events: none;
@@ -825,12 +825,17 @@
     }
     .faq-header {
       margin-bottom: 48px;
+      text-align: center;
     }
     .faq-header h2 {
       font-size: clamp(26px, 3.2vw, 44px);
     }
+    .faq-header .section-tag {
+      justify-content: center;
+    }
     .faq-list {
       max-width: 760px;
+      margin: 0 auto;
     }
     .faq-item {
       border-bottom: 1px solid var(--border);
@@ -1254,6 +1259,19 @@
       }
       .hero-photo img {
         object-position: 55% 20%;
+      }
+      .hero-content {
+        text-align: center;
+        max-width: 100%;
+      }
+      .hero-tag {
+        justify-content: center;
+        display: inline-flex;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-trust {
+        justify-content: center;
       }
       /* Faixa semi-transparente atrás do navbar — silhueta visível, logo legível */
       #navbar {
