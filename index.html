@@ -309,12 +309,12 @@
       z-index: 3;
     }
 
-    /* Foto posicionada na direita */
+    /* Foto posicionada na direita — larga para zona de blending ampla */
     .hero-photo {
       position: absolute;
       top: 0;
       right: 0;
-      width: 52%;
+      width: 72%;
       height: 100%;
       z-index: 1;
       overflow: hidden;
@@ -327,7 +327,7 @@
       display: block;
     }
 
-    /* Degradê horizontal: da esquerda (sólido) para a direita (transparente) */
+    /* Degradê horizontal: zona opaca generosa + transição longa e suave */
     .hero-photo-fade {
       position: absolute;
       top: 0;
@@ -337,11 +337,12 @@
       background: linear-gradient(
         to right,
         rgba(14,9,5,1.00)  0%,
-        rgba(14,9,5,1.00) 14%,
-        rgba(14,9,5,0.88) 32%,
-        rgba(14,9,5,0.58) 52%,
-        rgba(14,9,5,0.22) 70%,
-        rgba(14,9,5,0.05) 86%,
+        rgba(14,9,5,1.00) 28%,
+        rgba(14,9,5,0.92) 38%,
+        rgba(14,9,5,0.68) 50%,
+        rgba(14,9,5,0.35) 62%,
+        rgba(14,9,5,0.12) 76%,
+        rgba(14,9,5,0.03) 88%,
         rgba(14,9,5,0.00) 100%
       );
       z-index: 2;
